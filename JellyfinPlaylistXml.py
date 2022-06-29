@@ -5,8 +5,8 @@ import shutil
 import xml.etree.ElementTree as ET
 
 FileList = []
-path = input( "Enter the path of the playlist.xml file: " )
-tree = ET.parse( path )
+path = input( "Enter the path the playlist.xml file is located at: " )
+tree = ET.parse( os.path.join( path, "playlist.xml" ) )
 root = tree.getroot()
 
 print( "Gathering songs..." )
@@ -20,7 +20,6 @@ for file in FileList:
     size += os.path.getsize( file )
 
 print( f"Total size of playlist is {humanfriendly.format_size( size )}." )
-input( "Press any key to begin the copying process..." )
 progress = 0
 blacklist = """?"'%{&}$!`+|=:;@*<>#""" # Having these characters in the file name can cause issues on certain platforms
 dest = input( "Enter the destination path for the songs: " )
