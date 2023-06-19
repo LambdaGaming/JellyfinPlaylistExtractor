@@ -22,7 +22,7 @@ for file in FileList:
     size += os.path.getsize( file )
 
 ready = input( f"Total size of playlist is {humanfriendly.format_size( size )}. Continue? (y/n)" )
-if ready is not "y":
+if ready != "y":
     sys.exit()
 
 progress = 0
