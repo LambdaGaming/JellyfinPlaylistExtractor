@@ -1,12 +1,13 @@
 import humanfriendly
 import os
-from pathlib import Path
 import shutil
+import sys
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 FileList = []
 TotalFiles = 0
-path = input( "Enter the path the playlist.xml file is located at: " )
+path = input( "Enter the path of the playlist.xml file (excluding the filename itself): " )
 tree = ET.parse( os.path.join( path, "playlist.xml" ) )
 root = tree.getroot()
 
@@ -20,7 +21,10 @@ size = 0
 for file in FileList:
     size += os.path.getsize( file )
 
-print( f"Total size of playlist is {humanfriendly.format_size( size )}." )
+ready = input( f"Total size of playlist is {humanfriendly.format_size( size )}. Continue? (y/n)" )
+if ready is not "y":
+    sys.exit()
+
 progress = 0
 blacklist = """?"'%{&}$!`+|=:;@*<>#""" # Having these characters in the file name can cause issues on certain platforms
 dest = input( "Enter the destination path for the media: " )
