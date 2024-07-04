@@ -40,7 +40,7 @@ for file in FileList:
         print( f"{os.path.basename( file )} already exists. Adding number to end of name..." )
         
     for char in blacklist:
-        file = file.replace( char, "" ) # Remove blacklisted characters from media name
+        newfile = newfile.replace( char, "" ) # Remove blacklisted characters from media name
     try:
         shutil.copy( file, os.path.join( dest, os.path.basename( newfile ) ) )
         perc = ( progress / len( FileList ) ) * 100
